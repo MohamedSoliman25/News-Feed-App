@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+//    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id "androidx.navigation.safeargs.kotlin"
 }
@@ -20,6 +20,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
+    }
+    buildFeatures{
+        viewBinding true
     }
 
     buildTypes {

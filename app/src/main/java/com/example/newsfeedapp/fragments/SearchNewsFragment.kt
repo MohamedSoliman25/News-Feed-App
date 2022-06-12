@@ -10,12 +10,9 @@ import com.example.newsfeedapp.R
 
 class SearchNewsFragment : Fragment() {
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_search_news, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_search_news,container,false)
     }
+
 }
 
