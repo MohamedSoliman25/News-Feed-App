@@ -20,11 +20,13 @@ class NewsViewModel (
     //for breaking news
     val breakingNews:MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingPageNumber = 1
-//    var breakingNewsResponse:NewsResponse? = null
+    var breakingNewsResponse:NewsResponse? = null
 
     //for searching news
     val searchNews:MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsPageNumber = 1
+    var searchNewsResponse:NewsResponse? = null
+
 
     init {
         getBreakingNews("eg")
@@ -43,36 +45,56 @@ class NewsViewModel (
     }
 
 
-        private fun handleBreakingNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse>? {
-        if (response.isSuccessful){
-            response.body()?.let { resultResponse->
-                return Resource.Success(resultResponse)
-            }
-    }
-        return Resource.Error(response.message())
-}
-//    private fun handleBreakingNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse>? {
+//        private fun handleBreakingNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse>? {
 //        if (response.isSuccessful){
 //            response.body()?.let { resultResponse->
-//                breakingPageNumber++
-//                if (breakingNewsResponse ==null){
-//                    breakingNewsResponse = resultResponse
-//                }
-//                else{
-//                    val oldArticles = breakingNewsResponse?.articles
-//                    val newArticles = resultResponse.articles
-//                    oldArticles?.addAll(newArticles!!)
-//                }
-//                return Resource.Success(breakingNewsResponse?:resultResponse)
+//                return Resource.Success(resultResponse)
 //            }
 //    }
 //        return Resource.Error(response.message())
 //}
+    // for pagination
+    private fun handleBreakingNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse>? {
+        if (response.isSuccessful){
+            response.body()?.let { resultResponse->
+                breakingPageNumber++
+                if (breakingNewsResponse ==null){
+                    breakingNewsResponse = resultResponse
+                }
+                else{
+                    val oldArticles = breakingNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles!!)
+                }
+                return Resource.Success(breakingNewsResponse?:resultResponse)
+            }
+    }
+        return Resource.Error(response.message())
+}
 
+//    private fun handleSearchNewsNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse>? {
+//        if (response.isSuccessful){
+//            response.body()?.let { resultResponse->
+//                return Resource.Success(resultResponse)
+//            }
+//        }
+//        return Resource.Error(response.message())
+//    }
+
+    //for pagination
     private fun handleSearchNewsNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse>? {
         if (response.isSuccessful){
             response.body()?.let { resultResponse->
-                return Resource.Success(resultResponse)
+                searchNewsPageNumber++
+                if (searchNewsResponse ==null){
+                    searchNewsResponse = resultResponse
+                }
+                else{
+                    val oldArticles = searchNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles!!)
+                }
+                return Resource.Success(searchNewsResponse?:resultResponse)
             }
         }
         return Resource.Error(response.message())

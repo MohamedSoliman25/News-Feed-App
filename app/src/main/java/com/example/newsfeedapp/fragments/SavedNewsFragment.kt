@@ -1,7 +1,6 @@
 package com.example.newsfeedapp.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsfeedapp.MainActivity
 import com.example.newsfeedapp.R
 import com.example.newsfeedapp.adapters.NewsAdapter
-import com.example.newsfeedapp.databinding.FragmentArticleBinding
 import com.example.newsfeedapp.databinding.FragmentSavedNewsBinding
-import com.example.newsfeedapp.utils.Resource
 import com.example.newsfeedapp.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -37,7 +34,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = (activity as MainActivity).mainViewModel
+        viewModel = (activity as MainActivity).viewModel
         setUpRecyclerView()
 
         viewModel.getSavedNews().observe(viewLifecycleOwner, Observer { articles->

@@ -15,7 +15,7 @@ import com.example.newsfeedapp.viewmodel.NewsViewModelFactory
 class MainActivity : AppCompatActivity() {
 
     lateinit var activityMainBinding:ActivityMainBinding
-    lateinit var mainViewModel:NewsViewModel
+    lateinit var viewModel:NewsViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         
         val newsRepository = NewsRepository(ArticleDatabase(this))
         val viewModelProvider = NewsViewModelFactory(application,newsRepository)
-        mainViewModel = ViewModelProvider(this,viewModelProvider).get(NewsViewModel::class.java)
+        viewModel = ViewModelProvider(this,viewModelProvider).get(NewsViewModel::class.java)
 
         val navController  = supportFragmentManager.findFragmentById(R.id.newsFragment)?.findNavController()
         activityMainBinding.bottomNavigationView.setupWithNavController(navController!!)

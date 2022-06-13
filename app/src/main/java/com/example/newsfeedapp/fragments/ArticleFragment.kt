@@ -10,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.newsfeedapp.MainActivity
 import com.example.newsfeedapp.R
 import com.example.newsfeedapp.databinding.FragmentArticleBinding
-import com.example.newsfeedapp.databinding.FragmentBreakingNewsBinding
 import com.example.newsfeedapp.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -30,7 +29,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as MainActivity).mainViewModel
+        viewModel = (activity as MainActivity).viewModel
         val article  = args.article
         binding.webView.apply{
             webViewClient = WebViewClient()

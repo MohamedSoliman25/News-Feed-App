@@ -14,7 +14,7 @@ import com.example.newsfeedapp.model.Article
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     private var binding:ItemArticleBinding ?=null
-    inner class ArticleViewHolder(itemBinding: ItemArticleBinding):RecyclerView.ViewHolder(itemBinding.root)
+inner class ArticleViewHolder(itemBinding: ItemArticleBinding):RecyclerView.ViewHolder(itemBinding.root)
     private val differCallback = object:DiffUtil.ItemCallback<Article>(){
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.url ==newItem.url
