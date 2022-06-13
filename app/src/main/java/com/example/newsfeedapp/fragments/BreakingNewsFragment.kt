@@ -25,7 +25,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     private var _binding:FragmentBreakingNewsBinding? = null
     private val binding get() = _binding!!
    private lateinit var viewModel:NewsViewModel
-    lateinit var newsAdapter: NewsAdapter
+   private lateinit var newsAdapter: NewsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -38,14 +38,13 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         setUpRecyclerView()
 
 
-
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
 
             when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
-                        newsAdapter.differ.submitList(newsResponse.articles)
+                        newsAdapter.differ.submitList(newsResponse.articles?.toList())
                     }
                 }
                 is Resource.Error -> {

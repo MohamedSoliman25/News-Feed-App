@@ -10,8 +10,13 @@ class NewsRepository(
     suspend fun getBreakingNews(countryCode:String,pageNumber:Int) =
         RetrofitClient.api.getBreakingNews(countryCode,pageNumber)
 
+    suspend fun searchNews(searchQuery:String,pageNumber: Int) =
+            RetrofitClient.api.searchNews(searchQuery,pageNumber)
+
+
     suspend fun insert(article: Article) = db.getArticleDoa().insert(article)
     suspend fun delete(article: Article) = db.getArticleDoa().deleteArticles(article)
 
     fun getAllArticles()= db.getArticleDoa().getArticles()
+
 }
