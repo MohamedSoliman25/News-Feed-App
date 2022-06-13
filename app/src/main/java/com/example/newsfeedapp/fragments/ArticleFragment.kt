@@ -12,6 +12,7 @@ import com.example.newsfeedapp.R
 import com.example.newsfeedapp.databinding.FragmentArticleBinding
 import com.example.newsfeedapp.databinding.FragmentBreakingNewsBinding
 import com.example.newsfeedapp.viewmodel.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 class ArticleFragment : Fragment(R.layout.fragment_article) {
@@ -37,6 +38,10 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         }
 
 
+        binding.fab.setOnClickListener{
+            viewModel.insertArticle(article)
+            Snackbar.make(view,"Article saved successfully ",Snackbar.LENGTH_LONG).show()
+        }
     }
     override fun onDestroy() {
         super.onDestroy()

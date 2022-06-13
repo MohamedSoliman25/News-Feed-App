@@ -85,5 +85,7 @@ class NewsViewModel (
         newsRepository.delete(article)
     }
 
+    fun getSavedNews() = newsRepository.getSavedNews()
+
 
 }

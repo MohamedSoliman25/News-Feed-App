@@ -16,7 +16,6 @@ class NewsRepository(
 
     suspend fun insert(article: Article) = db.getArticleDoa().insert(article)
     suspend fun delete(article: Article) = db.getArticleDoa().deleteArticles(article)
-
-    fun getAllArticles()= db.getArticleDoa().getArticles()
+    fun getSavedNews()= db.getArticleDoa().getAllArticles()
 
 }
