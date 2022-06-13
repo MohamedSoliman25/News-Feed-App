@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,6 +53,8 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles?.toList())
 
+//                        newsAdapter.setList(newsResponse.articles?.toList()!!)
+//                        newsAdapter.notifyDataSetChanged()
                         val totalPages = newsResponse.totalResults!! / Constants.QUERY_PAGE_SIZE +2
                         isLastPage = viewModel.breakingPageNumber ==totalPages
                         if(isLastPage){
@@ -64,6 +67,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                     hideProgressBar()
                     response.message?.let { message ->
                         Log.e(TAG, "An error occured: $message " )
+                        Toast.makeText(activity,"An error occurred  $message",Toast.LENGTH_LONG).show()
 
                     }
                 }
@@ -124,9 +128,6 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                 viewModel.getBreakingNews("eg")
                 isScrolling = false
             }
-
-
-
 
         }
 

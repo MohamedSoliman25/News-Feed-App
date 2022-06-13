@@ -39,6 +39,8 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 
         viewModel.getSavedNews().observe(viewLifecycleOwner, Observer { articles->
             newsAdapter.differ.submitList(articles)
+//            newsAdapter.setList(articles)
+            newsAdapter.notifyDataSetChanged()
         })
 
         newsAdapter.setOnItemClickListener {
@@ -70,11 +72,12 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 val article  = newsAdapter.differ.currentList[position]
+//                val article  = newsAdapter.getList().get(position)
                 viewModel.deleteArticle(article)
                 Snackbar.make(view,"Successfully deleted article ",Snackbar.LENGTH_LONG).apply {
-                    setAction("Undo"){
-                        viewModel.insertArticle(article)
-                    }
+//                    setAction("Undo"){
+//                        viewModel.insertArticle(article)
+//                    }
                     show()
                 }
             }

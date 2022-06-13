@@ -14,6 +14,10 @@ import com.example.newsfeedapp.model.Article
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     private var binding:ItemArticleBinding ?=null
+//    private var articleList:List<Article> = ArrayList<Article>()
+//    fun setList(articleList:List<Article>){
+//        this.articleList = articleList
+//    }
 inner class ArticleViewHolder(itemBinding: ItemArticleBinding):RecyclerView.ViewHolder(itemBinding.root)
     private val differCallback = object:DiffUtil.ItemCallback<Article>(){
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -36,11 +40,12 @@ inner class ArticleViewHolder(itemBinding: ItemArticleBinding):RecyclerView.View
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
+//        val article  = articleList.get(position)
         holder.itemView.apply {
             Glide.with(this).load(article.urlToImage).into(binding?.ivArticle!!)
             binding?.tvSource?.text = article.source?.name
             binding?.tvArticleTitle?.text = article.title
-            binding?.tvPublished?.text = article?.publishedAt
+            binding?.tvPublished?.text = article.publishedAt
             setOnClickListener {
                 onItemClickListener?.let {
                     it(article)
