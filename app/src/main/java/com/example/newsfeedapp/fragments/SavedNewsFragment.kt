@@ -40,7 +40,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         viewModel.getSavedNews().observe(viewLifecycleOwner, Observer { articles->
             newsAdapter.differ.submitList(articles)
 //            newsAdapter.setList(articles)
-            newsAdapter.notifyDataSetChanged()
+//            newsAdapter.notifyDataSetChanged()
         })
 
         newsAdapter.setOnItemClickListener {

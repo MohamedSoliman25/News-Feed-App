@@ -71,7 +71,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles?.toList())
 //                        newsAdapter.setList(newsResponse.articles.toList())
-                        newsAdapter.notifyDataSetChanged()
+//                        newsAdapter.notifyDataSetChanged()
                         val totalPages = newsResponse.totalResults!! / Constants.QUERY_PAGE_SIZE +2
                         isLastPage = viewModel.searchNewsPageNumber ==totalPages
                         if(isLastPage){
