@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +21,7 @@ import com.example.newsfeedapp.databinding.FragmentBreakingNewsBinding
 import com.example.newsfeedapp.utils.Constants
 import com.example.newsfeedapp.utils.Resource
 import com.example.newsfeedapp.viewmodel.NewsViewModel
-
+import dagger.hilt.android.AndroidEntryPoint
 
 class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
@@ -28,7 +30,8 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     private var _binding:FragmentBreakingNewsBinding? = null
     private val binding get() = _binding!!
    private lateinit var viewModel:NewsViewModel
-   private lateinit var newsAdapter: NewsAdapter
+
+    private lateinit var newsAdapter: NewsAdapter
 
     var isLoading = false
     var isLastPage = false
@@ -42,6 +45,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
+        viewModel.getBreakingNews("eg")
         setUpRecyclerView()
 
 

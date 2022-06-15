@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,11 +22,11 @@ import com.example.newsfeedapp.databinding.FragmentSearchNewsBinding
 import com.example.newsfeedapp.utils.Constants
 import com.example.newsfeedapp.utils.Resource
 import com.example.newsfeedapp.viewmodel.NewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
 
 class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 
@@ -32,6 +34,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
     private var _binding: FragmentSearchNewsBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: NewsViewModel
+
     private lateinit var newsAdapter: NewsAdapter
 
 

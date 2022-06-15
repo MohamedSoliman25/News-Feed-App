@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -16,13 +18,14 @@ import com.example.newsfeedapp.adapters.NewsAdapter
 import com.example.newsfeedapp.databinding.FragmentSavedNewsBinding
 import com.example.newsfeedapp.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
-
+import dagger.hilt.android.AndroidEntryPoint
 
 class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
     private val TAG = "SavedNewsFragment"
     private var _binding: FragmentSavedNewsBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: NewsViewModel
+
     private lateinit var newsAdapter: NewsAdapter
 
 

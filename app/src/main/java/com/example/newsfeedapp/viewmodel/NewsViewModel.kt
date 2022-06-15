@@ -10,14 +10,18 @@ import com.example.newsfeedapp.model.Article
 import com.example.newsfeedapp.model.NewsResponse
 import com.example.newsfeedapp.repository.NewsRepository
 import com.example.newsfeedapp.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
+import javax.inject.Inject
 
-class NewsViewModel (
-         val app: Application,
-        val newsRepository:NewsRepository
-        ):AndroidViewModel(app){
+@HiltViewModel
+class NewsViewModel @Inject constructor(
+    val app: Application,
+    private val newsRepository:NewsRepository
+        ):ViewModel(){
     //for breaking news
     val breakingNews:MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingPageNumber = 1
@@ -29,9 +33,9 @@ class NewsViewModel (
     var searchNewsResponse:NewsResponse? = null
 
 
-    init {
-        getBreakingNews("eg")
-    }
+//    init {
+//        getBreakingNews("eg")
+//    }
 
      fun getBreakingNews(countryCode: String) =viewModelScope.launch {
 //        breakingNews.postValue(Resource.Loading())
