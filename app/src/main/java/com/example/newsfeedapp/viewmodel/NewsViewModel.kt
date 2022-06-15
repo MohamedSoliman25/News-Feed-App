@@ -153,7 +153,7 @@ class NewsViewModel @Inject constructor(
         }
     }
 
-    private fun hasInternetConnection():Boolean{
+     fun hasInternetConnection():Boolean{
         val connectivityManager =app.getSystemService(Context.CONNECTIVITY_SERVICE
         )as ConnectivityManager
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

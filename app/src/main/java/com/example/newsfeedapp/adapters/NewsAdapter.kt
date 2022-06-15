@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.bumptech.glide.Glide
 import com.example.newsfeedapp.R
 import com.example.newsfeedapp.databinding.ItemArticleBinding
@@ -42,7 +43,12 @@ inner class ArticleViewHolder(itemBinding: ItemArticleBinding):RecyclerView.View
         val article = differ.currentList[position]
 //        val article  = articleList.get(position)
         holder.itemView.apply {
-            Glide.with(this).load(article.urlToImage).into(binding?.ivArticle!!)
+//            Glide.with(this).load(article.urlToImage).into(binding?.ivArticle!!)
+            //here i'm using coroutine image loader (coil) to display image instead of glide
+            binding?.ivArticle!!.load(article.urlToImage){
+                crossfade(true)
+                crossfade(1000)
+            }
             binding?.tvSource?.text = article.source?.name
             binding?.tvArticleTitle?.text = article.title
             binding?.tvPublished?.text = article.publishedAt

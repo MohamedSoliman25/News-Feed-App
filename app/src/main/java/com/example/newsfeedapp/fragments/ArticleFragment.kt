@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -34,9 +35,15 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
         val article  = args.article
+
+        if(viewModel.hasInternetConnection()){
         binding.webView.apply{
             webViewClient = WebViewClient()
             loadUrl(article.url!!)
+        }
+        }
+        else{
+            Toast.makeText(activity,"No Internet connection",Toast.LENGTH_LONG).show()
         }
 
 
